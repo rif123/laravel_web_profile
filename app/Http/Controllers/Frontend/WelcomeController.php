@@ -1,36 +1,29 @@
 <?php namespace App\Http\Controllers\Frontend;
+
 use App\Http\Controllers\Controller;
-class WelcomeController extends Controller {
+use App\Http\Requests;
 
-	/*
-	|--------------------------------------------------------------------------
-	| Welcome Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders the "marketing page" for the application and
-	| is configured to only allow guests. Like most of the other sample
-	| controllers, you are free to modify or remove it as you desire.
-	|
-	*/
+use Illuminate\Http\Request;
+class WelcomeController extends Controller
+{
+    private $parser = array();
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //$this->middleware('guest');
+    }
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		//$this->middleware('guest');
-	}
-
-	/**
-	 * Show the application welcome screen to the user.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		return view('welcome');
-	}
-
+    /**
+     * Show the application welcome screen to the user.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        return view("frontend.homepage")->with('parser', $this->parser);
+    }
 }

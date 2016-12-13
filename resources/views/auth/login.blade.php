@@ -1,61 +1,42 @@
-@extends('app')
+@extends('layouts.index')
 
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Login</div>
-				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
-
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="remember"> Remember Me
-									</label>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Login</button>
-
-								<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
-							</div>
-						</div>
-					</form>
+<body class="login-page">
+<div class="login-box">
+	<div class="logo">
+		<a href="javascript:void(0);">Admin<b>BSB</b></a>
+		<small>Webprofile</small>
+	</div>
+	<div class="card">
+		<div class="body">
+			<form id="sign_in" method="POST">
+				<div class="msg">Sign in to start your session</div>
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="material-icons">person</i>
+					</span>
+					<div class="form-line">
+						<input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
+					</div>
 				</div>
-			</div>
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="material-icons">lock</i>
+					</span>
+					<div class="form-line">
+						<input type="password" class="form-control" name="password" placeholder="Password" required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-8 p-t-5">
+						<input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+						<label for="rememberme">Remember Me</label>
+					</div>
+					<div class="col-xs-4">
+						<button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
-</div>
 @endsection
